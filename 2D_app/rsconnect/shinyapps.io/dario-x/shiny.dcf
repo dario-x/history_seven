@@ -1,0 +1,11 @@
+name: shiny
+title:
+username:
+account: dario-x
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 6108837
+bundleId: 5844323
+url: https://dario-x.shinyapps.io/shiny/
+when: 1651091883.24571
+lastSyncTime: 1651091883.24571
