@@ -8,7 +8,7 @@ Via a classical 2D Application or in Virtual reality.
 
 
 The web app to the 2D version:
-https://dario-x.shinyapps.io/shiny/
+https://dario-x.shinyapps.io/history7/
 
 The web app to the 3D version
 https://history-7.glitch.me/
