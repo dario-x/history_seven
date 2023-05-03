@@ -1,5 +1,4 @@
-![image](https://user-images.githubusercontent.com/75636666/233617505-c5ef30fe-df5d-41f0-b171-ab2ebd0f9da4.png)
-
+![Unbenannt](https://user-images.githubusercontent.com/75636666/235878196-9bda14fd-e63a-405e-9f8e-71b28f18bc0b.PNG)
 
 # HistorySeven 🔎 📜
 
