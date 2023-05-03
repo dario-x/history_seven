@@ -2,9 +2,9 @@
 
 # HistorySeven 🔎 📜
 
-HistorySeven is a tool with which users can explore the history of the 7th district of Vienna - via a classical 2D Application or in Virtual reality. 
+HistorySeven is a tool with which users can explore the history of the 7th district of Vienna - via a 2D Application or in Virtual reality. 
 
-The 7th district of Vienna boasts a rich cultural and architectural heritage dating back almost 800 years. Throughout the centuries, this district has played host to numerous important buildings and structures that have evolved over time. To provide a comprehensive overview of the district's history, two interactive websites have been developed that features 2D or 3D models showcasing the different types of buildings that were typical for each respective time period.
+The 7th district of Vienna boasts a rich cultural and architectural heritage dating back around 800 years. Throughout the centuries. The district has played host to numerous important buildings and structures that have evolved over time. To provide a comprehensive overview of the district's history, two interactive websites have been developed that feature 2D or 3D models showcasing the different types of buildings that were typical for each respective time period.
 
 While exploring the website, visitors can learn about the district's evolution from its medieval beginnings to the present day, gaining insight into the factors that contributed to its development over the centuries.
 
