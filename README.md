@@ -1,4 +1,4 @@
-![Unbenannt](https://user-images.githubusercontent.com/75636666/235878196-9bda14fd-e63a-405e-9f8e-71b28f18bc0b.PNG)
+<img src="https://user-images.githubusercontent.com/75636666/235878196-9bda14fd-e63a-405e-9f8e-71b28f18bc0b.PNG" alt= “” width="9" height="4">
 
 # HistorySeven 🔎 📜
 
