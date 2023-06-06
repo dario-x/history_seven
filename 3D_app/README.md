@@ -16,11 +16,11 @@ The scene is built using several A-Frame components and external libraries, whic
 
 ### Libraries
 
--   [A-Frame](https://aframe.io/releases/1.3.0/aframe.min.js): A web framework for building VR experiences and 3D scenes on the web.
--   [A-Frame Environment Component](https://unpkg.com/aframe-environment-component): A component for adding environment elements to an A-Frame scene, such as sky, ground, and lighting.
--   [A-Frame Event Set Component](https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js): A component for defining sets of events and actions to be performed in response to those events.
--   [A-Frame Ground Component](https://unpkg.com/aframe-ground-component@0.0.4/dist/aframe-ground-component.min.js): A component for adding a ground plane to an A-Frame scene.
--   [SuperHands](https://unpkg.com/super-hands@2.1.0/dist/super-hands.min.js): A component for adding hand-tracking and interaction to an A-Frame scene.
+-   [A-Frame](https://aframe.io/): A web framework for building VR experiences and 3D scenes on the web.
+-   [A-Frame Environment Component]([https://unpkg.com/aframe-environment-component](https://github.com/supermedium/aframe-environment-component)): A component for adding environment elements to an A-Frame scene, such as sky, ground, and lighting.
+-   [A-Frame Event Set Component](https://github.com/amitwaghmare/aframe-event-set-component): A component for defining sets of events and actions to be performed in response to those events.
+-   [A-Frame Ground Component](https://github.com/kfarr/aframe-ground-component): A component for adding a ground plane to an A-Frame scene.
+-   [SuperHands](https://github.com/c-frame/aframe-super-hands-component): A component for adding hand-tracking and interaction to an A-Frame scene.
 
 
 Built with [A-Frame](https://aframe.io), a web framework for building virtual reality experiences.
