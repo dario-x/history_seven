@@ -21,6 +21,7 @@ names(r_colors) <- colors()
 
 # read in the history data
 district_data = tibble(read.csv("./data/district_data.csv", sep=";"))
+district_data = tibble::rowid_to_column(district_data, "id")
 
 # get the boundaries of the 7th district
 vienna_boundaries = readRDS(file = "./data/vienna_boundaries.rds")
@@ -74,21 +75,17 @@ history_icons = iconList(
 
 ui <- bootstrapPage(
   
+  tags$style(type = "text/css", "html,
+             body {
+                width: 100%;
+                height: 100%;
+             }
+            .jslider-value {font-size: 50px;}
+            .leaflet-fade-anim .leaflet-tile, .leaflet-fade-anim .leaflet-popup {opacity: 1 !important;}"),
+  
   theme = shinythemes::shinytheme("lumen"),
-  tags$style(type = "text/css", "html, body {width:100%;height:100%}"),
   
-  
-  tags$head(
-    # Add CSS to prevent the map from flickering
-    tags$style("
-      .leaflet-container {
-        position: relative;
-      }
-      .leaflet-container canvas {
-        position: absolute;
-      }
-    ")
-  ),
+
   
   leafletOutput("map", width = "100%", height = "100%"),
   
@@ -96,7 +93,25 @@ ui <- bootstrapPage(
   absolutePanel(top = 10, right = 10, draggable = TRUE,
                 
                 titlePanel("History of the 7th district"),
-                sliderInput('year', 'Choose a year you are interested in',value=1303, min=1211,max= 2000, step = 1, sep = ""),
+                
+                
+                
+                sliderInput('year', 'This is the year counter
+                            It will increase each second by one year.
+                            Alternatively you can
+                            triple click to choose a year you are interested in',
+                            value=1280, min=1211,max= 2000, step = 1, sep = ""),
+                
+                
+                tags$audio(
+                  id = "audio",
+                  src = "sound.mp3",
+                  type = "audio/mp3",
+                  controls = "controls",
+                  autoplay = TRUE,
+                ),
+                
+                
                 checkboxInput("show_legend", "Show legend"),
                 
                 conditionalPanel(
@@ -138,6 +153,7 @@ server <- function(input, output, session) {
       addProviderTiles("CartoDB.Positron", mask) %>%
 
       addMarkers(data=district_data %>% dplyr::filter(DATUM_VON <= 1303, DATUM_BIS >= 1303 | DATUM_BIS == 0),
+                 layerId=as.character(district_data$id),
                  ~LONG, 
                  ~LAT, 
                  icon = ~history_icons[TYPE], 
@@ -162,7 +178,7 @@ server <- function(input, output, session) {
   
   # Create a reactive timer is used to update 
   # the value of the slider each second by one
-  timer <- reactiveTimer(1000, session)
+  timer = reactiveTimer(1000, session)
   # Update the slider input every time the timer triggers
   observeEvent(timer(), {
     updateSliderInput(session, "year", value = input$year + 1)
@@ -170,16 +186,14 @@ server <- function(input, output, session) {
   
   
   observeEvent(input$year, {
-      
-    leafletProxy("map", session, deferUntilFlush = TRUE) %>%
+    proxy <- leafletProxy("map", session, deferUntilFlush = TRUE)
+    proxy %>%
       clearMarkers() %>%
       addMarkers(data = filtered_data(),
                  ~LONG, ~LAT, icon = ~history_icons[TYPE], 
                  label = ~SEITENNAME,
                  group = "Markers") 
   })
-  
-  
   
   
 }

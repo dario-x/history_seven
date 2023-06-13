@@ -1,0 +1,13 @@
+question_id;number_correct_VR;number_false_VR;number_correct_2D;number_false_2D
+Structual_1;8;4;8;4
+Structual_2;4;8;7;5
+Structual_3;8;4;8;4
+Spatial_1;11;1;12;0
+Spatial_2;11;1;11;1
+Spatial_3;11;1;11;1
+Temporal_1;6;6;5;7
+Temporal_2;9;3;11;1
+Temporal_3;9;3;10;2
+Audible_1;9;3;10;2
+Audible_2;10;2;11;1
+Audible_3;8;4;6;6
