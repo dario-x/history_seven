@@ -11,18 +11,17 @@ The 7th district of Vienna boasts a cultural and architectural heritage dating b
 By visiting the HistorySeven website, users can gain insight into the district's evolution from its medieval beginnings to the present day, understanding the factors that contributed to its development over the centuries.
 
 ## Interaction Methods for the 2D Application:
-- Use the mouse or the provided buttons in the top right corner to zoom in and out.
-- Hover over an object to display its name.
-- Stop the audio or jump forward to a specific year (although this is not recommended as it disrupts the guided experience).
-- The year counter automatically increases by one every second. Users can switch to a specific year by clicking the corresponding button on the right panel.
-- Click the "show the legend" button in the right panel to view a description of the symbols used.
+- 🔍 'Zoom In/Out': Use the mouse scroll wheel or the zoom buttons in the top right corner.
+- ℹ️ Object Info: Hover over an object to display its name.
+- ⏯️ Audio Control: Pause/Resume the audio or jump forward to a specific year.
+- ⏰ Year Selection: The year counter automatically increases by one every second. Switch to a specific year by clicking the corresponding button on the right panel.
+- 🗺️ Legend: Click the "Show the Legend" button in the right panel to view a description of the symbols used.
 
 ## Interaction Methods for the VR Experience:
-- Physically move closer to an object to zoom in and out (horizontal perspective).
-- Adjust your position (e.g., sit down or go on your knees) to zoom in and out (vertical perspective).
-- Change your perspective by looking in different directions.
-- Move closer to the legend to read its content.
-
+- 👣🔍 Zoom In/Out (Horizontal Perspective): Physically move closer to an object.
+- 👀🔍 Zoom In/Out (Vertical Perspective): Adjust your position (e.g., sit down or go on your knees).
+- 👀🔀 Change Perspective: Look in different directions.
+- 📖👣 Legend: Move closer to the legend to read its content.
 # Repository Structure
 
 The repository documenting the code for HistorySeven follows the folder structure outlined below:
