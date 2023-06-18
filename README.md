@@ -2,7 +2,7 @@
 
 ![newvr](https://github.com/dario-x/history_seven/assets/75636666/4d46415f-c966-4f78-97e1-f0290e6d97e5)
 
-# HistorySeven: exploring the history of Vienna's 7th district 
+# HistorySeven: Exploring the history of Vienna's 7th district 
 
 HistorySeven is an interactive tool that allows users to explore the rich history of Vienna's 7th district. It offers two options for exploration: a 2D application and a Virtual Reality (VR) experience.
 
