@@ -10,6 +10,14 @@ The 7th district of Vienna boasts a cultural and architectural heritage dating b
 
 By visiting the HistorySeven website, users can gain insight into the district's evolution from its medieval beginnings to the present day, understanding the factors that contributed to its development over the centuries.
 
+## 2D App
+
+https://dario-x.shinyapps.io/history7/
+
+## 3D App
+
+https://history-7.glitch.me/
+
 ## Functionality for the 2D Application:
 - 🔍 `Zoom In/Out`: Use the mouse scroll wheel or the zoom buttons in the top right corner.
 - ℹ️ `Object Info`: Hover over an object to display its name.
