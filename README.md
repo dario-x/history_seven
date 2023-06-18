@@ -27,7 +27,6 @@ By visiting the HistorySeven website, users can gain insight into the district's
 
 The repository documenting the code for HistorySeven follows the folder structure outlined below:
 
-
     ├── 2D_APP/                   # Contains the code for the developed R Shiny app.
     │   ├── app.R                 # Main script of the developed app.
     │   ├── hoster.R              # Script to host the application online.
@@ -52,7 +51,6 @@ The repository documenting the code for HistorySeven follows the folder structur
     │   └── data/                 # Contains data collected during the user study.
     │
     └── data/                     # Contains the main data used to build the HistorySeven application.
-
 
 # Code Structure
 
