@@ -73,10 +73,10 @@ discomfort_ratings = ggplot(data_per_participants, aes(x = rating_VR, fill = fac
                     name = "Experienced Discomfort",
                     labels = c("No Discomfort Experienced", "Discomfort Experienced")) +
   theme_minimal() +
-  theme(axis.text = element_text(size = 12),  # Adjust the axis text size
+  theme(axis.text = element_text(size = 14),  # Adjust the axis text size
         title = element_text(size = 16), # Adjust the title size
         axis.title = element_text(size = 14),  # Adjust the axis title size
-        legend.text = element_text(size = 12),  # Adjust the legend text size
+        legend.text = element_text(size = 14),  # Adjust the legend text size
         legend.position = "top",  # Position the legend on top
         legend.title = element_blank(),
         legend.justification = "center")  # Center-align the legend
@@ -131,11 +131,11 @@ boxplot_data_questions <- data.frame(
   Ratings = c(data_per_participants$rating_VR, data_per_participants$rating_2D)
 )
 # Create the boxplot
-bxp_ratings <- ggplot(boxplot_data_questions, aes(x = Visualization, y = Ratings, fill = Visualization)) +
-  geom_boxplot(width = 0.5, lwd = 1, outlier.shape = 1, outlier.stroke = 2, outlier.size = 4, notch = FALSE, outlier.colour = "black", coef = 1.5) +
-  scale_y_continuous(breaks = seq(0, 10, 2), limits = c(0, 10), labels = function(x) as.integer(x)) +
-  labs(x = "Visualization Type", y = "Ratings",
-       title = "Comparison of Ratings\nof the VR and 2D Appplication") +
+bxp_ratings <- ggplot(boxplot_data_questions, aes(x = Ratings, y = Visualization, fill = Visualization)) +
+  geom_boxplot(width = 0.5, lwd = 1, stat = "boxplot", outlier.shape = 1, outlier.stroke = 2, outlier.size = 4, notch = FALSE, outlier.colour = "black", coef = 1.5) +
+  scale_x_continuous(breaks = seq(0, 10, 1), limits = c(0, 10), labels = function(x) as.integer(x)) +
+  labs(y = "Visualization Type", x = "Ratings",
+       title = "Comparison of Ratings\nof the VR and 2D Application") +
   theme_minimal() +
   theme(axis.text = element_text(size = 12),  # Adjust the axis text size
         title = element_text(size = 16), # Adjust the title size
@@ -144,7 +144,8 @@ bxp_ratings <- ggplot(boxplot_data_questions, aes(x = Visualization, y = Ratings
         legend.position = "top",  # Position the legend on top
         legend.title = element_blank(),
         legend.justification = "center")  +
-  geom_hline(yintercept = 5, linetype = "dashed", size = 1, color = "red")
+  geom_vline(xintercept = 5, linetype = "dashed", size = 1, color = "red")
+
 
 ggsave("./plots/boxplot_ratings.pdf", bxp_ratings, width = 6, height = 4)
 
@@ -169,7 +170,6 @@ t_test_1.2 = ggttest(t_test_result_H1_1)+
         legend.position = "top",  # Position the legend on top
         legend.title = element_blank(),
         legend.justification = "center")
-
 ggsave("./plots/t_test_results_H1.2.pdf", t_test_1.2, width = 6, height = 4)
 
 
@@ -190,19 +190,18 @@ data$color <- ifelse(data$number_correct_VR > data$number_correct_2D, "VR", "2D"
 # Create the plot
 plot_diff <- ggplot(data, aes(x = question_id, y = diff_correct, fill = color)) +
   geom_bar(stat = "identity", position = "dodge") +
-  scale_fill_manual(values = c("VR" = "steelblue", "2D" = "darkorange")) +
-  labs(x = "Question ID", y = "Difference in Correct Answers (VR - 2D)",
-       title = "Comparison of Correct Answers\nBetween VR and 2D") +
+  scale_fill_manual(values = c("2D" = "#f8766d", "VR" = "#00bfc4")) +
+  labs(x = "Question ID", y = "Diff. in Correct Answers (VR - 2D)",
+       title = "Comparison of Correct Answers between VR and 2D") +
   theme_minimal() +
-  theme(legend.position = "bottom",
-        axis.title = element_text(size = 12),
-        axis.text.x = element_text(size = 10, angle = 45, hjust = 1),
-        axis.text.y = element_text(size = 10),
-        plot.title = element_text(size = 14, face = "bold", hjust = 0.5),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        panel.grid.major.x = element_line(color = "lightgray"),
-        panel.grid.major.y = element_line(color = "lightgray")) +
+  theme_minimal() +
+  theme(axis.text = element_text(size = 12),  # Adjust the axis text size
+        title = element_text(size = 16), # Adjust the title size
+        axis.title = element_text(size = 14),  # Adjust the axis title size
+        legend.text = element_text(size = 14),  # Adjust the legend text size
+        legend.position = "top",  # Position the legend on top
+        legend.title = element_blank(),
+        legend.justification = "center") +
   scale_y_continuous(limits = c(-12, 12), breaks = c(-12, -5, -3, 0, 2, 5, 12))
 # Adjust legend title and labels
 plot_diff <- plot_diff +
@@ -210,6 +209,7 @@ plot_diff <- plot_diff +
                              labels = c("2D", "VR")))
 # Print the plot
 print(plot_diff)
+ggsave("./plots/difference_correct_answers.pdf", plot_diff, width = 12, height = 4)
 
 
 # Boxplot of correctly answered question
@@ -219,39 +219,115 @@ boxplot_data <- data.frame(
   Correct_Answers = c(data$number_correct_VR, data$number_correct_2D)
 )
 # Create the boxplot
-bxp_questions <- ggplot(boxplot_data, aes(x = Visualization, y = Correct_Answers, fill = Visualization)) +
+bxp_questions <- ggplot(boxplot_data, aes(x = Correct_Answers, y = Visualization, fill = Visualization)) +
   geom_boxplot(width = 0.5, lwd = 1, outlier.shape = 1, outlier.stroke = 2, notch = FALSE, outlier.size = 4, outlier.colour = "black", coef = 1.5) +
-  scale_y_continuous(breaks = seq(0, 12, 2), limits = c(0, 12)) +
-  labs(x = "Visualization Type", y = "Number of Correct Answers",
+  scale_x_continuous(breaks = seq(0, 12, 1), limits = c(0, 12)) +
+  labs(x = "Correct Answers per Question", y = "Visualization Type",
        title = "Comparison of Correct Answers\nBetween VR and 2D Visualizations") +
   theme_minimal() +
-  theme(legend.position = "bottom",
-        axis.title = element_text(size = 20),
-        axis.text = element_text(size = 20),
-        plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
-        panel.grid.major.y = element_line(color = "lightgrey"),
-        panel.border = element_blank(),
-        panel.grid.minor = element_blank()) + 
-  geom_hline(yintercept = 6, linetype = "dashed", size =1,  color = "red")
+  theme(axis.text = element_text(size = 14),  # Adjust the axis text size
+        title = element_text(size = 16), # Adjust the title size
+        axis.title = element_text(size = 14),  # Adjust the axis title size
+        legend.text = element_text(size = 14),  # Adjust the legend text size
+        legend.position = "top",  # Position the legend on top
+        legend.title = element_blank(),
+        legend.justification = "center")
 # Print the boxplot
 print(bxp_questions)
+ggsave("./plots/correct_and_wrong_answers_boxplot.pdf", bxp_questions, width = 6, height = 4)
 
 
 
 
 # Significance test for all questions
+
+
 # Create a data frame for the overall results
-table_data_sum <- data.frame(correct_VR = sum(data$number_correct_VR), corrcct_2D = sum(data$number_correct_2D))
-chisq.test(table_data_sum)
-ifelse(chisq.test(table_data_sum)$p.value > 0.05, "Not significant", "Significant")
-t_test = t.test(data$number_correct_2D, data$number_correct_VR, paired = TRUE, alternative = "two.sided", conf.level = 0.95)
-library(gginference)
-ggttest(t_test)
+# Create the contingency table
+observed_knowledge_questions <- as.data.frame(matrix(c(sum(data$number_correct_VR), 
+                                        sum(data$number_correct_2D), 
+                                        144-sum(data$number_correct_VR), 
+                                        144-sum(data$number_correct_2D)), 
+                                      nrow = 2, ncol = 2, byrow = TRUE))
+rownames(observed_knowledge_questions) <- c("Correct Answers", "Wrong Answers")
+colnames(observed_knowledge_questions) <- c("VR", "2D")
+print(observed_knowledge_questions)
+# Calculate the expected frequencies
+expected_knowledge_questions <- as.data.frame(rowSums(observed_knowledge_questions) %*% t(colSums(observed_knowledge_questions)) / sum(observed_knowledge_questions))
+rownames(expected_knowledge_questions) <- c("Correct Answers", "Wrong Answers")
+print(expected_knowledge_questions)
+# Calculate the chi-square test statistic
+chi_squared <- sum((observed_knowledge_questions - expected_knowledge_questions)^2 / expected_knowledge_questions)
+# Calculate the p-value
+p_value <- 1 - pchisq(chi_squared, df=1)
+cat("Chi squared equals", round(chi_squared, 3), "with 1 degree of freedom.\n")
+cat("The two-tailed P value equals", round(p_value, 4), "\n")
+
+
+# Convert the data frame to a LaTeX table
+print(xtable(observed_knowledge_questions), include.rownames = TRUE)
+print(xtable(expected_knowledge_questions), include.rownames = TRUE)
 
 
 
 
 
+
+# Significance test for groups of questions
+
+# Initialize a data frame to store the results
+table_combined <- data.frame(Type = character(),
+                             Difference = numeric(),
+                             p.value = numeric(),
+                             Significance = character(),
+                             stringsAsFactors = FALSE)
+# Group questions by type
+question_types <- unique(substring(data$question_id, 1, nchar(data$question_id) - 2))
+
+# Iterate through the question types
+for (type in question_types) {
+  print(type)
+  # Subset the data for the current question type
+  type_data <- data[grep(type, data$question_id), ]
+  # Create the contingency table
+  observed <- as.data.frame(matrix(c(sum(type_data$number_correct_VR),
+                                     sum(type_data$number_correct_2D),
+                                     36 - sum(type_data$number_correct_VR),
+                                     36 - sum(type_data$number_correct_2D)),
+                                   nrow = 2, ncol = 2, byrow = TRUE))
+  rownames(observed) <- c("Correct", "False")
+  colnames(observed) <- c("VR", "2D")
+  # Calculate the expected frequencies
+  expected <- as.data.frame(rowSums(observed) %*% t(colSums(observed)) / sum(observed))
+  rownames(expected) <- c("Correct", "False")
+  #print latex tables
+  print(xtable(observed), include.rownames = TRUE)
+  print(xtable(expected), include.rownames = TRUE)
+  # Calculate the chi-square test statistic
+  chi_squared <- sum((observed - expected)^2 / expected)
+  # Calculate the p-value
+  p_value <- 1 - pchisq(chi_squared, df = 1)
+  
+  # Check for statistical significance
+  if (p_value <= 0.1) {
+    significance <- "Significant"
+  } else {
+    significance <- "Not significant"
+  }
+  
+  # Append the results to the combined table
+  table_combined <- bind_rows(table_combined, data.frame(Type = type, 
+                                                         Difference = sum(type_data$number_correct_VR) - sum(type_data$number_correct_2D), 
+                                                         p.value = p_value, Significance = significance))
+}
+# Print the combined table
+cat("Combined Table of Expected and Observed Results:\n")
+print(table_combined)
+
+
+
+
+# each grou individually
 
 # Initialize a data frame to store the results
 table_combined <- data.frame(Question = character(),
@@ -303,57 +379,6 @@ print(table_combined)
 
 
 
-# Initialize a data frame to store the results
-table_combined <- data.frame(Type = character(),
-                             Difference = numeric(),
-                             p.value = numeric(),
-                             Significance = character(),
-                             stringsAsFactors = FALSE)
-# Group questions by type
-question_types <- unique(substring(data$question_id, 1, nchar(data$question_id) - 2))
-
-# Iterate through the question types
-for (type in question_types) {
-  # Subset the data for the current question type
-  type_data <- data[grep(type, data$question_id), ]
-  # Create the contingency table
-  observed <- as.data.frame(matrix(c(sum(type_data$number_correct_VR),
-                                     sum(type_data$number_correct_2D),
-                                     36 - sum(type_data$number_correct_VR),
-                                     36 - sum(type_data$number_correct_2D)),
-                                   nrow = 2, ncol = 2, byrow = TRUE))
-  rownames(observed) <- c("Correct", "False")
-  colnames(observed) <- c("VR", "2D")
-  print(type)
-  print(observed)
-  # Calculate the expected frequencies
-  expected <- as.data.frame(rowSums(observed) %*% t(colSums(observed)) / sum(observed))
-  rownames(expected) <- c("Correct", "False")
-  # Calculate the chi-square test statistic
-  chi_squared <- sum((observed - expected)^2 / expected)
-  # Calculate the p-value
-  p_value <- 1 - pchisq(chi_squared, df = 1)
-  
-  # Check for statistical significance
-  if (p_value <= 0.1) {
-    significance <- "Significant"
-  } else {
-    significance <- "Not significant"
-  }
-  
-  # Append the results to the combined table
-  table_combined <- bind_rows(table_combined, data.frame(Type = type, 
-                                                         Difference = sum(type_data$number_correct_VR) - sum(type_data$number_correct_2D), 
-                                                         p.value = p_value, Significance = significance))
-}
-# Print the combined table
-cat("Combined Table of Expected and Observed Results:\n")
-print(table_combined)
-
-
-
-
-
 
 
 
@@ -367,21 +392,31 @@ print(table_combined)
 
 # Scatter plot with linear regression lines
 plot_combined <- ggplot(data_per_participants, aes(x = ratio_correct_answers_2D, y = rating_2D)) +
-  geom_point(aes(color = "2D"), size = 3) +
-  geom_point(aes(x = ratio_correct_answers_VR, y = rating_VR, color = "VR"), size = 3) +
+  geom_jitter(aes(color = "2D"), size = 3) +
+  geom_jitter(aes(x = ratio_correct_answers_VR, y = rating_VR, color = "VR"), size = 3) +
   geom_smooth(data = data_per_participants, aes(x = ratio_correct_answers_2D, y = rating_2D),
-              method = "lm", se = FALSE, linetype = "dashed", color = "steelblue") +
+              method = "lm", se = FALSE, linetype = "dashed", color = "#f8766d") +
   geom_smooth(data = data_per_participants, aes(x = ratio_correct_answers_VR, y = rating_VR),
-              method = "lm", se = FALSE, linetype = "dashed", color = "orange") +
-  labs(title = "Relationship between given rating and performance",
+              method = "lm", se = FALSE, linetype = "dashed", color = "#00bfc4") +
+  geom_smooth(data = data_per_participants, aes(x = (ratio_correct_answers_VR+ratio_correct_answers_2D)/2, 
+                                                y = (rating_VR+rating_2D)/2),
+              method = "lm", se = FALSE, linetype = "dashed", color = "grey") +
+  labs(title = "Relationship - rating and performance",
        x = "Ratio of Correct Answers",
        y = "Rating of Visualization",
        color = "Visualization") +
-  scale_color_manual(values = c("2D" = "steelblue", "VR" = "orange")) +
-  theme_minimal()
+  scale_color_manual(values = c("2D" = "#f8766d", "VR" = "#00bfc4")) +
+  theme_minimal() +
+  theme(axis.text = element_text(size = 12),  # Adjust the axis text size
+        title = element_text(size = 16), # Adjust the title size
+        axis.title = element_text(size = 14),  # Adjust the axis title size
+        legend.text = element_text(size = 12),  # Adjust the legend text size
+        legend.position = "top",  # Position the legend on top
+        legend.title = element_blank(),
+        legend.justification = "center")
 
-# Display the combined plot
-print(plot_combined)
+
+ggsave("./plots/scatter_performance_rating.pdf", plot_combined, width = 6, height = 6)
 
 
 

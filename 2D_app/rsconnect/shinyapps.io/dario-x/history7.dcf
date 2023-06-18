@@ -5,7 +5,7 @@ account: dario-x
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 8920299
-bundleId: 7257892
+bundleId: 7357931
 url: https://dario-x.shinyapps.io/history7/
-when: 1684939311.56656
-lastSyncTime: 1684939311.56656
+when: 1687048262.84747
+lastSyncTime: 1687048262.84747

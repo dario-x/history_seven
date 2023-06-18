@@ -88,6 +88,15 @@ ui <- bootstrapPage(
 
   
   leafletOutput("map", width = "100%", height = "100%"),
+  tags$div(
+    style = "position: absolute; bottom: 5px; left: 10px; font-size: 12px;",
+    "Data taken from open.data.gv objects: 
+    https://www.data.gv.at/katalog/dataset/71ef28d3-58a4-4087-8b31-c192792beb0e 
+    (for historic buildings) - and 
+    https://www.data.gv.at/katalog/dataset/stadt-wien_bezirksgrenzenwien 
+    (for the boundaries)"
+  ),
+  
   
   
   absolutePanel(top = 10, right = 10, draggable = TRUE,
@@ -134,16 +143,16 @@ server <- function(input, output, session) {
   
   # Reactive expression for the data subsetted to what the user selected
   filtered_data = reactive({
-    district_data %>% dplyr::filter(DATUM_VON <= input$year, DATUM_BIS >= input$year | DATUM_BIS == 0)
+    district_data %>% dplyr::filter(date_of_origin <= input$year, date_of_destruction >= input$year | date_of_destruction == 0)
   })
   
-  start_data = district_data %>% dplyr::filter(DATUM_VON <= 1303, DATUM_BIS >= 1303 | DATUM_BIS == 0)
+  start_data = district_data %>% dplyr::filter(date_of_origin <= 1303, date_of_destruction >= 1303 | date_of_destruction == 0)
   
-  marker_group <- addMarkers(leaflet(), data=district_data %>% dplyr::filter(DATUM_VON <= 1303, DATUM_BIS >= 1303 | DATUM_BIS == 0),
+  marker_group <- addMarkers(leaflet(), data=district_data %>% dplyr::filter(date_of_origin <= 1303, date_of_destruction >= 1303 | date_of_destruction == 0),
                              ~LONG, 
                              ~LAT, 
                              icon = ~history_icons[TYPE], 
-                             label = ~SEITENNAME)
+                             label = ~page_name)
   
   output$map <- renderLeaflet({
     leaflet(data = district_data) %>%
@@ -152,12 +161,12 @@ server <- function(input, output, session) {
       #define the map theme - a bw theme was used to draw attention to icons
       addProviderTiles("CartoDB.Positron", mask) %>%
 
-      addMarkers(data=district_data %>% dplyr::filter(DATUM_VON <= 1303, DATUM_BIS >= 1303 | DATUM_BIS == 0),
+      addMarkers(data=district_data %>% dplyr::filter(date_of_origin <= 1303, date_of_destruction >= 1303 | date_of_destruction == 0),
                  layerId=as.character(district_data$id),
                  ~LONG, 
                  ~LAT, 
                  icon = ~history_icons[TYPE], 
-                 label = ~SEITENNAME,
+                 label = ~page_name,
                  group = "Markers") %>%
       
       fitBounds(min(district_data$LONG), 
@@ -191,7 +200,7 @@ server <- function(input, output, session) {
       clearMarkers() %>%
       addMarkers(data = filtered_data(),
                  ~LONG, ~LAT, icon = ~history_icons[TYPE], 
-                 label = ~SEITENNAME,
+                 label = ~page_name,
                  group = "Markers") 
   })
   
