@@ -55,7 +55,7 @@ The repository documenting the code for HistorySeven follows the folder structur
 
 # Code Structure
 
-The steps involved in building this application are described in the following graphic:
+The steps involved in building the applications are described in the following graphic:
 
 ![codestructure](https://github.com/dario-x/history_seven/assets/75636666/06203631-dd42-405e-b86e-2554dacbb8e6)
 
