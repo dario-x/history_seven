@@ -1,6 +1,7 @@
 ![Unbenannt](https://user-images.githubusercontent.com/75636666/235879079-2aed894e-6573-4670-9d05-187befa12e70.PNG)
 
-![com oculus browser-20230618-231721](https://github.com/dario-x/history_seven/assets/75636666/9c75420f-403f-4c3d-bbcf-0b5767bcc72c)
+![com oculus browser-20230618-232132ee](https://github.com/dario-x/history_seven/assets/75636666/c82f9736-85b6-4b5b-a72f-42a52f19fa15)
+
 
 
 # HistorySeven 🔎 📜
