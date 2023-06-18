@@ -27,31 +27,32 @@ By visiting the HistorySeven website, users can gain insight into the district's
 
 The repository documenting the code for HistorySeven follows the folder structure outlined below:
 
-- `2D_APP`: Contains the code for the developed R Shiny app.
-  - `app.R`: Main script of the developed app.
-  - `hoster.R`: Script to host the application online.
-  - `icons`: Stores image files used for 2D symbols.
-  - `www`: Stores audio content and graphics for information.
-  - `data`: Contains datasets used in the VR version.
 
-- `3D_app`: Holds the code for the developed A-Frame VR app.
-  - `index.html`: Main HTML file of the app.
-  - `counter.js`: Provides functionality for the year counter.
-  - `assets`: Contains data for GLTF models and graphics (e.g., ground texture).
+├── 2D_APP/                  # Contains the code for the developed R Shiny app.
+│   ├── app.R                # Main script of the developed app.
+│   ├── hoster.R             # Script to host the application online.
+│   ├── icons/               # Stores image files used for 2D symbols.
+│   └── www/                 # Stores audio content and graphics for information.
+│
+├── 3D_app/                  # Holds the code for the developed A-Frame VR app.
+│   ├── index.html           # Main HTML file of the app.
+│   ├── counter.js           # Provides functionality for the year counter.
+│   └── assets/              # Contains data for GLTF models and graphics (e.g., ground texture).
+│
+├── preprocessing/           # Contains code for preprocessing steps performed before building the app.
+│   ├── preprocessing.ipynb  # Main preprocessing script for the dataset.
+│   ├── Code_Generator.ipynb # Converts data into the format used for A-Frame.
+│   └── plots/               # Stores graphics describing the dataset.
+│
+├── analysis/                # Holds code used to evaluate the user study and conduct statistical tests.
+│   ├── analysis.R           # Main script for analysis and statistical data.
+│   ├── Analysis.ipynb       # Additional analysis (e.g., tag clouds).
+│   ├── group_assignment.R   # Generates group assignments for the user study (2D or VR first).
+│   ├── plots/               # Stores graphics output from the analysis.
+│   └── data/                # Contains data collected during the user study.
+│
+└── data/                    # Contains the main data used to build the HistorySeven application.
 
-- `preprocessing`: Contains code for preprocessing steps performed before building the app.
-  - `preprocessing.ipynb`: Main preprocessing script for the dataset.
-  - `Code_Generator.ipynb`: Converts data into the format used for A-Frame.
-  - `plots`: Stores graphics describing the dataset.
-
-- `analysis`: Holds code used to evaluate the user study and conduct statistical tests.
-  - `analysis.R`: Main script for analysis and statistical data.
-  - `Analysis.ipynb`: Additional analysis (e.g., tag clouds).
-  - `group_assignment.R`: Generates group assignments for the user study (2D or VR first).
-  - `plots`: Stores graphics output from the analysis.
-  - `data`: Contains data collected during the user study.
-
-- `data`: Contains the main data used to build the HistorySeven application.
 
 # Code Structure
 
