@@ -327,7 +327,7 @@ print(table_combined)
 
 
 
-# each grou individually
+# each group individually
 
 # Initialize a data frame to store the results
 table_combined <- data.frame(Question = character(),
@@ -390,6 +390,24 @@ print(table_combined)
 
 # Do people who perform better also give the visualization a bette rating? 
 
+
+# Calculate linear regressions and get R^2 and p values
+# Calculate average values first to prepare data
+data_per_participants$avg_ratio_correct_answers <- (data_per_participants$ratio_correct_answers_2D + data_per_participants$ratio_correct_answers_VR) / 2
+data_per_participants$avg_rating <- (data_per_participants$rating_2D + data_per_participants$rating_VR) / 2
+# Do the linear regression
+lm_2D <- lm(rating_2D ~ ratio_correct_answers_2D, data = data_per_participants)
+lm_VR <- lm(rating_VR ~ ratio_correct_answers_VR, data = data_per_participants)
+lm_combined <- lm(avg_rating ~ avg_ratio_correct_answers, data = data_per_participants)
+# Get R^2 and P Values
+r_squared_2D <- summary(lm_2D)$r.squared
+p_value_2D <- summary(lm_2D)$coefficients[2, 4]
+r_squared_VR <- summary(lm_VR)$r.squared
+p_value_VR <- summary(lm_VR)$coefficients[2, 4]
+r_squared_combined <- summary(lm_combined)$r.squared
+p_value_combined <- summary(lm_combined)$coefficients[2, 4]
+
+
 # Scatter plot with linear regression lines
 plot_combined <- ggplot(data_per_participants, aes(x = ratio_correct_answers_2D, y = rating_2D)) +
   geom_jitter(aes(color = "2D"), size = 3) +
@@ -413,9 +431,22 @@ plot_combined <- ggplot(data_per_participants, aes(x = ratio_correct_answers_2D,
         legend.text = element_text(size = 12),  # Adjust the legend text size
         legend.position = "top",  # Position the legend on top
         legend.title = element_blank(),
-        legend.justification = "center")
+        legend.justification = "center") +
+  annotate("text", x=0.85, y=7.9, 
+           label= paste("R^2", round(r_squared_2D,2), "P-Value", round(p_value_2D,2)), 
+           color = "#f8766d") +
+  annotate("text", x=0.85, y=9.5, 
+           label= paste("R^2", round(r_squared_VR,2), "P-Value", round(p_value_VR,2)), 
+           color = "#00bfc4") +
+  annotate("text", x=0.85, y=8.4, 
+           label= paste("R^2", round(r_squared_combined,2), "P-Value", round(p_value_combined,2)), 
+           color = "grey")
+
+plot_combined
 
 
+
+                      
 ggsave("./plots/scatter_performance_rating.pdf", plot_combined, width = 6, height = 6)
 
 
